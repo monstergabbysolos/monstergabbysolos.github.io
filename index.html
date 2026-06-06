@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  JOE GABRIEL — PORTFOLIO                            ║
+  ║  To deploy on GitHub Pages:                         ║
+  ║  1. Create repo: monstergabbysolos.github.io
+  ║  2. Upload THIS FILE as index.html                  ║
+  ║  3. Settings → Pages → Branch: main → /root        ║
+  ║  4. Your site: monstergabbysolos.github.io                 ║
+  ║                                                      ║
+  ║  To use custom domain (e.g. joegabriel.dev):        ║
+  ║  - Add CNAME file with: joegabriel.dev              ║
+  ║  - Point DNS A records to GitHub IPs:               ║
+  ║    185.199.108.153 / .109.153 / .110.153 / .111.153 ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joe Gabriel — Engineer · Creator · Storyteller</title>
+<meta name="description" content="Joe Gabriel — Hardware engineer, app developer, novelist, and political artist based in Chennai, India.">
+<meta name="author" content="Joe Gabriel">
+<meta property="og:title" content="Joe Gabriel — Portfolio">
+<meta property="og:description" content="Hardware engineer, Flutter developer, AI builder, novelist & filmmaker from Chennai.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#00c8ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #000408;
+    --deep: #010d1a;
+    --blue-core: #00c8ff;
+    --blue-bright: #40e0ff;
+    --blue-ghost: #00c8ff18;
+    --blue-mid: #0088bb;
+    --white: #e8f4ff;
+    --white-dim: #a0c8e0;
+    --accent: #00ffcc;
+    --pulse: #ff6aff;
+    --gold: #ffe066;
+    --glow-sm: 0 0 10px #00c8ff66, 0 0 30px #00c8ff22;
+    --glow-md: 0 0 20px #00c8ffaa, 0 0 60px #00c8ff44, 0 0 120px #00c8ff11;
+    --glow-lg: 0 0 40px #00c8ffcc, 0 0 100px #00c8ff66, 0 0 200px #00c8ff22;
+  }
+  *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--void);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  #cursor {
+    position: fixed; pointer-events: none; z-index: 9999;
+    width: 12px; height: 12px;
+    background: var(--blue-bright);
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: var(--glow-md);
+    transition: transform 0.1s ease, background 0.2s;
+    mix-blend-mode: screen;
+  }
+  #cursor-ring {
+    position: fixed; pointer-events: none; z-index: 9998;
+    width: 40px; height: 40px;
+    border: 1px solid #00c8ff88;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    transition: transform 0.25s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s;
+  }
+  body:has(a:hover) #cursor-ring,
+  body:has(.project-card:hover) #cursor-ring {
+    width: 70px; height: 70px;
+    border-color: var(--accent);
+  }
+
+  /* ── CANVAS BG ── */
+  #bg-canvas {
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, #000408ee, transparent);
+  }
+  .nav-logo {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 18px; font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--blue-bright);
+    text-shadow: var(--glow-sm);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--white-dim); text-decoration: none;
+    position: relative; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--blue-bright);
+    box-shadow: var(--glow-sm);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--blue-bright); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh; min-height: 700px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 0 40px;
+    overflow: hidden;
+  }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+    animation: fadeUp 1s 0.2s both;
+  }
+  .hero-name {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(36px, 7vw, 110px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: transparent;
+    background: linear-gradient(135deg, var(--white) 0%, var(--blue-bright) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px #00c8ff88);
+    animation: fadeUp 1s 0.4s both;
+    position: relative;
+  }
+  .hero-name::after {
+    content: attr(data-text);
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--white) 0%, var(--blue-bright) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: blur(20px) drop-shadow(0 0 60px #00c8ffcc);
+    animation: breathe 4s ease-in-out infinite;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 28px);
+    font-weight: 300; font-style: italic;
+    color: var(--white-dim);
+    margin-top: 20px;
+    letter-spacing: 0.1em;
+    animation: fadeUp 1s 0.6s both;
+  }
+  .hero-desc {
+    max-width: 560px;
+    font-size: 12px; line-height: 2;
+    color: #5a8aaa;
+    margin-top: 24px;
+    letter-spacing: 0.05em;
+    animation: fadeUp 1s 0.8s both;
+  }
+  .hero-cta {
+    margin-top: 48px;
+    display: flex; gap: 20px;
+    animation: fadeUp 1s 1s both;
+  }
+  .btn {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 14px 32px; border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary {
+    background: var(--blue-core);
+    color: var(--void);
+    box-shadow: var(--glow-md);
+  }
+  .btn-primary:hover {
+    background: var(--blue-bright);
+    box-shadow: var(--glow-lg);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    border: 1px solid #00c8ff44;
+    color: var(--blue-bright);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    border-color: var(--blue-bright);
+    background: #00c8ff11;
+    box-shadow: var(--glow-sm);
+    transform: translateY(-2px);
+  }
+  .scroll-indicator {
+    position: absolute; bottom: 40px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 8px; animation: fadeUp 1s 1.4s both;
+  }
+  .scroll-indicator span {
+    font-size: 9px; letter-spacing: 0.3em;
+    color: #00c8ff66; text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--blue-core), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── ORGANISMS (floating shapes) ── */
+  .organism {
+    position: absolute; pointer-events: none;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    animation: drift linear infinite;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 80px;
+    padding: 120px 100px;
+  }
+  .about-visual {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .bio-ring {
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 1px solid #00c8ff22;
+    position: relative;
+    animation: slowSpin 20s linear infinite;
+  }
+  .bio-ring::before, .bio-ring::after {
+    content: ''; position: absolute;
+    border-radius: 50%; border: 1px solid;
+  }
+  .bio-ring::before {
+    inset: 20px;
+    border-color: #00c8ff33;
+    animation: slowSpin 15s linear infinite reverse;
+  }
+  .bio-ring::after {
+    inset: 50px;
+    border-color: #00ffcc22;
+    animation: slowSpin 10s linear infinite;
+  }
+  .bio-avatar {
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #1a4a6a, #000d1a);
+    border: 2px solid #00c8ff44;
+    box-shadow: 0 0 60px #00c8ff33, inset 0 0 40px #00c8ff11;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 36px; font-weight: 700;
+    color: var(--blue-bright);
+    text-shadow: var(--glow-md);
+    overflow: hidden;
+  }
+  .bio-avatar::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 60% 30%, #00c8ff22 0%, transparent 60%);
+  }
+  .orbit-dot {
+    position: absolute; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--blue-bright);
+    box-shadow: var(--glow-md);
+    top: 50%; left: 50%;
+    transform-origin: 0 0;
+  }
+  .about-text {}
+  .section-label {
+    font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 30px; height: 1px;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  .section-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 28px;
+  }
+  .highlight { color: var(--blue-bright); text-shadow: var(--glow-sm); }
+  .about-bio {
+    font-size: 12px; line-height: 2.2;
+    color: var(--white-dim);
+    margin-bottom: 24px;
+  }
+  .about-bio em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 15px;
+    color: var(--white);
+  }
+  .skills-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 32px;
+  }
+  .skill-tag {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 6px 16px;
+    border: 1px solid #00c8ff33;
+    color: var(--blue-bright);
+    background: #00c8ff08;
+    transition: all 0.3s;
+  }
+  .skill-tag:hover {
+    background: #00c8ff22;
+    border-color: var(--blue-bright);
+    box-shadow: var(--glow-sm);
+    transform: translateY(-2px);
+  }
+
+  /* ── PROJECTS ── */
+  #projects {
+    padding: 120px 0;
+    overflow: hidden;
+  }
+  .projects-header {
+    padding: 0 100px;
+    margin-bottom: 80px;
+  }
+  .projects-intro {
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+
+  /* Horizontal scroll track */
+  .projects-track-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0 60px;
+  }
+  .projects-track {
+    display: flex; gap: 32px;
+    padding: 0 100px;
+    transition: transform 0.1s linear;
+    will-change: transform;
+  }
+
+  .project-card {
+    flex: 0 0 380px;
+    height: 520px;
+    position: relative;
+    border: 1px solid #00c8ff15;
+    background: linear-gradient(145deg, #010d1a, #000408);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), border-color 0.3s, box-shadow 0.5s;
+  }
+  .project-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, #00c8ff14 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .project-card:hover {
+    border-color: #00c8ff55;
+    box-shadow: 0 0 60px #00c8ff22, 0 40px 80px #00000088;
+    transform: translateY(-12px) scale(1.02);
+  }
+  .project-card:hover::before { opacity: 1; }
+
+  .card-glow-orb {
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(60px);
+    transition: all 0.5s;
+  }
+  .project-card:hover .card-glow-orb { opacity: 0.7; transform: scale(1.3); }
+
+  .card-number {
+    position: absolute; top: 28px; right: 28px;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 10px; letter-spacing: 0.3em;
+    color: #00c8ff33;
+  }
+  .card-category {
+    position: absolute; top: 28px; left: 28px;
+    font-size: 8px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px; border: 1px solid #00ffcc33;
+    background: #00ffcc08;
+  }
+  .card-icon-area {
+    position: absolute; top: 80px; left: 28px; right: 28px;
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-icon {
+    width: 100px; height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .card-icon svg {
+    width: 64px; height: 64px;
+    filter: drop-shadow(0 0 20px currentColor);
+    animation: iconPulse 3s ease-in-out infinite;
+  }
+  .card-icon-ring {
+    position: absolute; inset: -10px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    opacity: 0.3;
+    animation: iconRing 3s ease-in-out infinite;
+  }
+  .card-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px;
+    background: linear-gradient(to top, #010d1aee 60%, transparent);
+  }
+  .card-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 10px; line-height: 1.9;
+    color: var(--white-dim);
+    margin-bottom: 20px;
+  }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .card-tag {
+    font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid #00c8ff22;
+    color: #00c8ff88;
+  }
+  .card-arrow {
+    position: absolute; bottom: 28px; right: 28px;
+    width: 32px; height: 32px;
+    border: 1px solid #00c8ff33;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue-bright);
+    opacity: 0;
+    transform: translate(10px, 10px);
+    transition: all 0.3s;
+  }
+  .project-card:hover .card-arrow {
+    opacity: 1; transform: translate(0,0);
+  }
+
+  /* Scroll nav */
+  .track-nav {
+    display: flex; justify-content: center;
+    gap: 12px; margin-top: 32px;
+    align-items: center;
+  }
+  .track-btn {
+    width: 44px; height: 44px;
+    border: 1px solid #00c8ff33;
+    background: transparent;
+    color: var(--blue-bright);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+    font-size: 18px;
+  }
+  .track-btn:hover {
+    border-color: var(--blue-bright);
+    background: #00c8ff11;
+    box-shadow: var(--glow-sm);
+  }
+  .track-progress {
+    width: 120px; height: 1px;
+    background: #00c8ff22;
+    position: relative;
+  }
+  .track-progress-fill {
+    position: absolute; top: 0; left: 0;
+    height: 100%; width: 0%;
+    background: var(--blue-bright);
+    box-shadow: var(--glow-sm);
+    transition: width 0.3s;
+  }
+
+  /* ── CREATIVE ── */
+  #creative {
+    padding: 120px 100px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .creative-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  .creative-item {
+    border: 1px solid #00c8ff15;
+    background: linear-gradient(135deg, #010d1a, #000408);
+    padding: 32px 28px;
+    position: relative; overflow: hidden;
+    transition: all 0.4s;
+    cursor: pointer;
+  }
+  .creative-item:first-child {
+    grid-column: 1 / -1;
+  }
+  .creative-item:hover {
+    border-color: #00c8ff44;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px #00000066, var(--glow-sm);
+  }
+  .creative-item-icon {
+    font-size: 36px; margin-bottom: 16px;
+    filter: drop-shadow(0 0 10px var(--blue-bright));
+  }
+  .creative-item-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 12px; letter-spacing: 0.1em;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .creative-item-desc {
+    font-size: 10px; line-height: 1.8;
+    color: #5a8aaa;
+  }
+  .creative-item-accent {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--blue-bright), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .creative-item:hover .creative-item-accent { transform: scaleX(1); }
+
+  /* ── CONTACT ── */
+  #contact {
+    padding: 160px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-glow {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, #00c8ff08 0%, transparent 70%);
+    pointer-events: none;
+    animation: breathe 5s ease-in-out infinite;
+  }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 8vw, 100px);
+    font-weight: 300; font-style: italic;
+    line-height: 1;
+    color: transparent;
+    background: linear-gradient(135deg, var(--white) 30%, var(--blue-bright));
+    -webkit-background-clip: text; background-clip: text;
+    margin-bottom: 40px;
+  }
+  .contact-sub {
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--white-dim); margin-bottom: 60px;
+  }
+  .contact-links {
+    display: flex; justify-content: center; gap: 24px;
+    flex-wrap: wrap; margin-bottom: 80px;
+  }
+  .contact-link {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--blue-bright); text-decoration: none;
+    padding: 12px 28px;
+    border: 1px solid #00c8ff33;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .contact-link:hover {
+    border-color: var(--blue-bright);
+    background: #00c8ff11;
+    box-shadow: var(--glow-md);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid #00c8ff11;
+    padding: 32px 100px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p {
+    font-size: 9px; letter-spacing: 0.2em;
+    color: #00c8ff33; text-transform: uppercase;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, #00c8ff22, transparent);
+    margin: 0 auto;
+  }
+
+  /* ── PARALLAX LAYER ── */
+  .parallax-layer {
+    position: absolute; pointer-events: none;
+    will-change: transform;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes breathe {
+    0%,100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+    50% { opacity: 0.3; }
+  }
+  @keyframes slowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes drift {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px,-20px) scale(1.05); }
+    66% { transform: translate(-20px,30px) scale(0.97); }
+    100% { transform: translate(0,0) scale(1); }
+  }
+  @keyframes iconPulse {
+    0%,100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  @keyframes iconRing {
+    0%,100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.3); opacity: 0.1; }
+  }
+  @keyframes revealUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── NOISE OVERLAY ── */
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.4;
+  }
+
+  /* ── ORGANISMS LAYER ── */
+  .orb-field {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+
+  /* ── HORIZONTAL SCROLL SECTION ── */
+  .sticky-scroll {
+    position: relative;
+    height: 300vh;
+  }
+  .sticky-inner {
+    position: sticky; top: 0;
+    height: 100vh; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .sticky-track {
+    display: flex; gap: 0;
+    will-change: transform;
+  }
+  .sticky-panel {
+    flex: 0 0 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  /* Glitch text */
+  .glitch {
+    position: relative;
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    font-family: inherit; font-size: inherit; font-weight: inherit;
+  }
+  .glitch::before {
+    color: var(--pulse);
+    animation: glitch1 3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  .glitch::after {
+    color: var(--accent);
+    animation: glitch2 3s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+  @keyframes glitch1 {
+    0%,90%,100% { transform: translate(0); opacity: 0; }
+    92% { transform: translate(-3px, 2px); opacity: 0.8; }
+    94% { transform: translate(3px, -2px); opacity: 0.8; }
+    96% { transform: translate(-1px, 0); opacity: 0.8; }
+  }
+  @keyframes glitch2 {
+    0%,88%,100% { transform: translate(0); opacity: 0; }
+    90% { transform: translate(3px, -2px); opacity: 0.8; }
+    92% { transform: translate(-2px, 2px); opacity: 0.8; }
+    94% { transform: translate(1px, 0); opacity: 0.8; }
+  }
+
+  /* Scanline effect */
+  .scanlines {
+    position: fixed; inset: 0; z-index: 998; pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom, transparent 0, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px
+    );
+  }
+
+  /* ── COUNTER STATS ── */
+  .stats-row {
+    display: flex; gap: 60px; margin-top: 48px;
+  }
+  .stat { text-align: center; }
+  .stat-number {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 40px; font-weight: 700;
+    color: var(--blue-bright);
+    text-shadow: var(--glow-md);
+    display: block;
+  }
+  .stat-label {
+    font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--white-dim); margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">JOE GABRIEL</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#creative">Creative</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb-field" id="hero-orbs"></div>
+
+  <p class="hero-eyebrow">Engineer · Creator · Storyteller</p>
+  <h1 class="hero-name glitch" data-text="JOE GABRIEL">JOE GABRIEL</h1>
+  <p class="hero-title">Building things that breathe life.</p>
+  <p class="hero-desc">
+    Hardware whisperer. App architect. Novelist. Political artist. From nuclear-grade instruments to mobile ecosystems — every project is a living organism.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">Explore Work</a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="bio-ring" id="bio-ring">
+      <div class="bio-avatar">JO</div>
+    </div>
+  </div>
+  <div class="about-text">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">
+      Where <span class="highlight">circuits</span> meet<br>consciousness.
+    </h2>
+    <p class="about-bio">
+      I'm Joe — a Chennai-based engineer and creative who builds at the intersection of hardware, software, and story. I design <em>instruments for nuclear inspection</em>, craft Flutter ecosystems, and write fiction that bends genres.
+    </p>
+    <p class="about-bio">
+      My work lives at the edge of what's technically possible and what's humanly meaningful. Whether it's a bioluminescent oscillator coil or a political short film — I engineer with soul.
+    </p>
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-number" data-target="12">0</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="4">0</span>
+        <span class="stat-label">Domains</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="3">0</span>
+        <span class="stat-label">Years Deep</span>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <span class="skill-tag">ESP32 / IoT</span>
+      <span class="skill-tag">Flutter</span>
+      <span class="skill-tag">AI / ML</span>
+      <span class="skill-tag">Fusion 360</span>
+      <span class="skill-tag">Firebase</span>
+      <span class="skill-tag">ROS2</span>
+      <span class="skill-tag">Node.js</span>
+      <span class="skill-tag">Fiction Writing</span>
+      <span class="skill-tag">Film</span>
+      <span class="skill-tag">Political Art</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header reveal">
+    <div class="projects-intro">
+      <div>
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-title">Projects that <span class="highlight">exist</span>.</h2>
+      </div>
+      <p style="font-size:11px;color:#5a8aaa;max-width:280px;line-height:2;text-align:right;">
+        Drag or use arrows to navigate. Each project is a living thing.
+      </p>
+    </div>
+  </div>
+
+  <div class="projects-track-wrapper">
+    <div class="projects-track" id="projectsTrack">
+
+      <!-- Card 1: IGCAR -->
+      <div class="project-card" data-index="0" data-url="https://github.com/monstergabbysolos/igcar-ovality-instrument">
+        <div class="card-glow-orb" style="background:#00c8ff;"></div>
+        <span class="card-category">Hardware / IoT</span>
+        <span class="card-number">01</span>
+        <div class="card-icon-area">
+          <div class="card-icon" style="color:#00c8ff">
+            <div class="card-icon-ring"></div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="32" cy="32" r="20"/>
+              <path d="M32 12 V8 M32 56 V52 M12 32 H8 M56 32 H52"/>
+              <path d="M18 18 L14 14 M46 46 L50 50 M46 18 L50 14 M18 46 L14 50"/>
+              <circle cx="32" cy="32" r="6" fill="currentColor" opacity="0.4"/>
+              <path d="M22 32 Q27 22 32 32 Q37 42 42 32" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">IGCAR Ovality Instrument</h3>
+          <p class="card-desc">Miniaturized nuclear-grade pipe inspection device. LC oscillator, ESP32-S3, OLED, 3D-printed coil assembly for IGCAR Kalpakkam.</p>
+          <div class="card-tags">
+            <span class="card-tag">ESP32-S3</span>
+            <span class="card-tag">LC Oscillator</span>
+            <span class="card-tag">74HC14</span>
+            <span class="card-tag">Nuclear</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 2: RAFT -->
+      <div class="project-card" data-index="1" data-url="https://github.com/monstergabbysolos/raft-navigator">
+        <div class="card-glow-orb" style="background:#00ffcc;"></div>
+        <span class="card-category">Mobile / IoT</span>
+        <span class="card-number">02</span>
+        <div class="card-icon-area">
+          <div class="card-icon" style="color:#00ffcc">
+            <div class="card-icon-ring"></div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M10 40 L32 16 L54 40"/>
+              <path d="M20 40 L32 28 L44 40"/>
+              <line x1="32" y1="40" x2="32" y2="52"/>
+              <line x1="24" y1="52" x2="40" y2="52"/>
+              <circle cx="32" cy="16" r="4" fill="currentColor" opacity="0.5"/>
+              <path d="M44 24 Q52 24 52 32 Q52 40 44 40" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">RAFT Navigator v2.0</h3>
+          <p class="card-desc">Flutter navigation companion app with Mapbox Directions API, real-time TCP socket comms to ESP32, and full map UI.</p>
+          <div class="card-tags">
+            <span class="card-tag">Flutter</span>
+            <span class="card-tag">Mapbox</span>
+            <span class="card-tag">ESP32</span>
+            <span class="card-tag">TCP Socket</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 3: FaithQuest -->
+      <div class="project-card" data-index="2" data-url="https://play.google.com/store/apps/details?id=com.joegabriel.faithquest">
+        <div class="card-glow-orb" style="background:#ffe066;"></div>
+        <span class="card-category">Mobile App</span>
+        <span class="card-number">03</span>
+        <div class="card-icon-area">
+          <div class="card-icon" style="color:#ffe066">
+            <div class="card-icon-ring"></div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M32 8 L32 56"/>
+              <path d="M20 20 L44 20"/>
+              <path d="M16 36 Q24 28 32 36 Q40 44 48 36"/>
+              <circle cx="32" cy="8" r="4" fill="currentColor" opacity="0.6"/>
+              <path d="M24 44 L32 52 L40 44" fill="currentColor" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">FaithQuest Catholic</h3>
+          <p class="card-desc">Gamified Flutter/Firebase Catholic spiritual growth app on Google Play. Live Mass Readings, progress tracking, closed testing.</p>
+          <div class="card-tags">
+            <span class="card-tag">Flutter</span>
+            <span class="card-tag">Firebase</span>
+            <span class="card-tag">Play Store</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 4: AI Wardrobe -->
+      <div class="project-card" data-index="3" data-url="https://github.com/monstergabbysolos/atelier-wardrobe">
+        <div class="card-glow-orb" style="background:#ff6aff;"></div>
+        <span class="card-category">AI / ML</span>
+        <span class="card-number">04</span>
+        <div class="card-icon-area">
+          <div class="card-icon" style="color:#ff6aff">
+            <div class="card-icon-ring"></div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="18" y="14" width="28" height="36" rx="2"/>
+              <path d="M24 14 Q24 8 32 8 Q40 8 40 14"/>
+              <line x1="24" y1="28" x2="40" y2="28"/>
+              <line x1="24" y1="35" x2="36" y2="35"/>
+              <circle cx="40" cy="44" r="6" fill="currentColor" opacity="0.3"/>
+              <path d="M37 44 L39 46 L43 42"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">ATELIER — AI Wardrobe</h3>
+          <p class="card-desc">Editorial-aesthetic wardrobe management app powered by Gemini 2.5 Flash vision AI. IndexedDB storage, Outfit Studio.</p>
+          <div class="card-tags">
+            <span class="card-tag">Gemini AI</span>
+            <span class="card-tag">HTML/JS</span>
+            <span class="card-tag">Vision API</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 5: Novel -->
+      <div class="project-card" data-index="4" data-url="https://instagram.com/joe.gabriel">
+        <div class="card-glow-orb" style="background:#ff4444;"></div>
+        <span class="card-category">Fiction</span>
+        <span class="card-number">05</span>
+        <div class="card-icon-area">
+          <div class="card-icon" style="color:#ff6666">
+            <div class="card-icon-ring"></div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 12 Q16 8 20 8 L48 8 Q52 8 52 12 L52 52 Q52 56 48 56 L16 56 Z"/>
+              <path d="M24 20 L40 20 M24 28 L40 28 M24 36 L34 36"/>
+              <path d="M32 44 Q36 40 40 44 Q44 48 40 52 Q36 56 32 52 Q28 48 32 44 Z" fill="currentColor" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">The Crimson Crown Saga</h3>
+          <p class="card-desc">An epic fantasy novel — genre-bending storytelling that weaves political intrigue, myth, and moral philosophy into a living world.</p>
+          <div class="card-tags">
+            <span class="card-tag">Fiction</span>
+            <span class="card-tag">Fantasy</span>
+            <span class="card-tag">Narrative</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 6: Short Film / Political -->
+      <div class="project-card" data-index="5" data-url="https://youtube.com/@joegabriel">
+        <div class="card-glow-orb" style="background:#ff9900;"></div>
+        <span class="card-category">Film / Art</span>
+        <span class="card-number">06</span>
+        <div class="card-icon-area">
+          <div class="card-icon" style="color:#ff9900">
+            <div class="card-icon-ring"></div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="16" width="48" height="32" rx="2"/>
+              <circle cx="32" cy="32" r="10"/>
+              <path d="M28 28 L28 36 L36 32 Z" fill="currentColor" opacity="0.6"/>
+              <line x1="8" y1="22" x2="4" y2="18"/>
+              <line x1="8" y1="28" x2="4" y2="28"/>
+              <line x1="56" y1="22" x2="60" y2="18"/>
+              <line x1="56" y1="28" x2="60" y2="28"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Short Film & Political Art</h3>
+          <p class="card-desc">Creative political commentary through film and visual art. Provocative, grounded, and humanist — stories that question power.</p>
+          <div class="card-tags">
+            <span class="card-tag">Filmmaking</span>
+            <span class="card-tag">Political</span>
+            <span class="card-tag">Visual Art</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <!-- Card 7: e-VAANAM -->
+      <div class="project-card" data-index="6" data-url="https://github.com/monstergabbysolos/e-vaanam">
+        <div class="card-glow-orb" style="background:#44ff88;"></div>
+        <span class="card-category">AI / Social Tech</span>
+        <span class="card-number">07</span>
+        <div class="card-icon-area">
+          <div class="card-icon" style="color:#44ff88">
+            <div class="card-icon-ring"></div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="32" cy="32" r="22"/>
+              <path d="M10 32 Q18 22 32 32 Q46 42 54 32"/>
+              <path d="M10 32 Q18 42 32 32 Q46 22 54 32"/>
+              <line x1="32" y1="10" x2="32" y2="54"/>
+              <circle cx="32" cy="32" r="4" fill="currentColor" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">e-VAANAM × IELLAB</h3>
+          <p class="card-desc">Solar-powered EcoTech hub for tribal regions: telemedicine, e-governance, indigenous language preservation via Vertex AI.</p>
+          <div class="card-tags">
+            <span class="card-tag">Vertex AI</span>
+            <span class="card-tag">Google Cloud</span>
+            <span class="card-tag">Social Tech</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="track-nav">
+    <button class="track-btn" id="prevBtn">←</button>
+    <div class="track-progress"><div class="track-progress-fill" id="progressFill"></div></div>
+    <button class="track-btn" id="nextBtn">→</button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CREATIVE -->
+<section id="creative">
+  <div class="about-text reveal">
+    <p class="section-label">Creative Universe</p>
+    <h2 class="section-title">
+      More than<br>an <span class="highlight">engineer</span>.
+    </h2>
+    <p class="about-bio">
+      I believe engineering and art are the same impulse — to impose meaning on chaos. My creative work is an extension of that belief.
+    </p>
+    <p class="about-bio">
+      From fantasy novels that explore political theology, to short films that hold up a mirror to power — I create things that <em>disturb and illuminate</em>.
+    </p>
+  </div>
+  <div class="creative-grid reveal">
+    <div class="creative-item">
+      <div class="creative-item-icon">📖</div>
+      <h3 class="creative-item-title">The Crimson Crown Saga</h3>
+      <p class="creative-item-desc">An epic fantasy in progress. Political intrigue, fallen kingdoms, moral ambiguity. A world where every crown costs a soul.</p>
+      <div class="creative-item-accent"></div>
+    </div>
+    <div class="creative-item">
+      <div class="creative-item-icon">🎬</div>
+      <h3 class="creative-item-title">Short Films</h3>
+      <p class="creative-item-desc">Visual stories that ask uncomfortable questions. Human, urgent, and unafraid.</p>
+      <div class="creative-item-accent"></div>
+    </div>
+    <div class="creative-item">
+      <div class="creative-item-icon">🎨</div>
+      <h3 class="creative-item-title">Political Art</h3>
+      <p class="creative-item-desc">Creative content that dissects power, systems, and the human cost of ideology.</p>
+      <div class="creative-item-accent"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <p class="section-label" style="justify-content:center;margin-bottom:20px;">Get in Touch</p>
+  <h2 class="contact-title reveal">Let's build<br>something alive.</h2>
+  <p class="contact-sub reveal">Open to collaborations, contracts, and conversations.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:joegabriel@gmail.com" class="contact-link">✉ Email Me</a>
+    <a href="https://linkedin.com/in/joe-gabriel" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+    <a href="https://github.com/monstergabbysolos" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+    <a href="https://instagram.com/joe.gabriel" target="_blank" rel="noopener" class="contact-link">Instagram</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Joe Gabriel — Chennai, India</p>
+  <p style="color:#00c8ff22">Built with intention & bioluminescence</p>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+function animCursor(){
+  cursor.style.left = mx+'px'; cursor.style.top = my+'px';
+  rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+// ── CANVAS BIOLUMINESCENT FIELD ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W,H,particles=[],organisms=[];
+
+function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+resize(); window.addEventListener('resize',resize);
+
+class Particle {
+  constructor(){
+    this.x = Math.random()*W;
+    this.y = Math.random()*H;
+    this.r = Math.random()*1.5+0.3;
+    this.vx = (Math.random()-0.5)*0.2;
+    this.vy = (Math.random()-0.5)*0.2;
+    this.life = Math.random()*Math.PI*2;
+    this.speed = 0.005+Math.random()*0.01;
+    const blues = ['rgba(0,200,255,','rgba(0,255,204,','rgba(100,200,255,','rgba(0,150,220,'];
+    this.color = blues[Math.floor(Math.random()*blues.length)];
+  }
+  update(){
+    this.life+=this.speed;
+    this.x+=this.vx+Math.sin(this.life)*0.3;
+    this.y+=this.vy+Math.cos(this.life*0.7)*0.2;
+    if(this.x<0)this.x=W; if(this.x>W)this.x=0;
+    if(this.y<0)this.y=H; if(this.y>H)this.y=0;
+  }
+  draw(){
+    const alpha = 0.3+Math.sin(this.life)*0.3;
+    ctx.save();
+    ctx.shadowBlur=8; ctx.shadowColor=this.color+'0.8)';
+    ctx.fillStyle=this.color+alpha+')';
+    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+}
+
+class Organism {
+  constructor(){
+    this.x = Math.random()*W;
+    this.y = Math.random()*H;
+    this.r = 60+Math.random()*120;
+    this.life = Math.random()*Math.PI*2;
+    this.speed = 0.003+Math.random()*0.005;
+    this.vx = (Math.random()-0.5)*0.4;
+    this.vy = (Math.random()-0.5)*0.4;
+    this.hue = Math.random()<0.7 ? 195 : (Math.random()<0.5?165:280);
+    this.tendrils = 3+Math.floor(Math.random()*5);
+    this.dendrite = [];
+    for(let i=0;i<this.tendrils;i++){
+      this.dendrite.push({
+        angle: (i/this.tendrils)*Math.PI*2,
+        len: 0.6+Math.random()*0.8,
+        phase: Math.random()*Math.PI*2,
+        speed: 0.01+Math.random()*0.02
+      });
+    }
+  }
+  update(){
+    this.life+=this.speed;
+    this.x+=this.vx+Math.sin(this.life*0.5)*0.8;
+    this.y+=this.vy+Math.cos(this.life*0.3)*0.6;
+    if(this.x<-200)this.x=W+200; if(this.x>W+200)this.x=-200;
+    if(this.y<-200)this.y=H+200; if(this.y>H+200)this.y=-200;
+    this.dendrite.forEach(d=>d.phase+=d.speed);
+  }
+  draw(){
+    const pulse = 0.4+Math.sin(this.life)*0.2;
+    ctx.save();
+
+    // Core blob
+    const grad = ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);
+    grad.addColorStop(0,`hsla(${this.hue},100%,70%,${pulse*0.12})`);
+    grad.addColorStop(0.5,`hsla(${this.hue},100%,60%,${pulse*0.04})`);
+    grad.addColorStop(1,'transparent');
+    ctx.fillStyle=grad;
+    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fill();
+
+    // Tendrils
+    this.dendrite.forEach(d=>{
+      const wv = Math.sin(d.phase);
+      const len = this.r*d.len*(0.8+wv*0.2);
+      const ex = this.x+Math.cos(d.angle+wv*0.3)*len;
+      const ey = this.y+Math.sin(d.angle+wv*0.3)*len;
+      const mx2 = this.x+Math.cos(d.angle+0.5)*len*0.6;
+      const my2 = this.y+Math.sin(d.angle+0.5)*len*0.6;
+      const tAlpha = (0.3+wv*0.15)*pulse;
+      ctx.strokeStyle=`hsla(${this.hue},100%,70%,${tAlpha})`;
+      ctx.lineWidth=0.8;
+      ctx.shadowBlur=12; ctx.shadowColor=`hsla(${this.hue},100%,70%,0.5)`;
+      ctx.beginPath();
+      ctx.moveTo(this.x,this.y);
+      ctx.quadraticCurveTo(mx2,my2,ex,ey);
+      ctx.stroke();
+      // Tip glow
+      ctx.fillStyle=`hsla(${this.hue},100%,80%,${tAlpha*0.8})`;
+      ctx.shadowBlur=8;
+      ctx.beginPath(); ctx.arc(ex,ey,1.5,0,Math.PI*2); ctx.fill();
+    });
+    ctx.restore();
+  }
+}
+
+for(let i=0;i<180;i++) particles.push(new Particle());
+for(let i=0;i<14;i++) organisms.push(new Organism());
+
+let scrollY=0;
+window.addEventListener('scroll',()=>scrollY=window.scrollY);
+
+function drawGrid(){
+  ctx.save();
+  ctx.strokeStyle='rgba(0,200,255,0.03)';
+  ctx.lineWidth=1;
+  const gs=80;
+  const off = scrollY*0.1%gs;
+  for(let x=0;x<W;x+=gs){ ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke(); }
+  for(let y=-off;y<H;y+=gs){ ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke(); }
+  ctx.restore();
+}
+
+function drawNebulaLayer(){
+  ctx.save();
+  const t=Date.now()*0.0003;
+  const cx=W/2+Math.sin(t)*100, cy=H/2+Math.cos(t*0.7)*80;
+  const g=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*0.7);
+  g.addColorStop(0,'rgba(0,80,120,0.04)');
+  g.addColorStop(0.4,'rgba(0,40,80,0.02)');
+  g.addColorStop(1,'transparent');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  ctx.restore();
+}
+
+function animateCanvas(){
+  ctx.clearRect(0,0,W,H);
+  drawGrid();
+  drawNebulaLayer();
+  organisms.forEach(o=>{ o.update(); o.draw(); });
+  particles.forEach(p=>{ p.update(); p.draw(); });
+  requestAnimationFrame(animateCanvas);
+}
+animateCanvas();
+
+// ── PARALLAX MOUSE ──
+let pmx=0,pmy=0;
+document.addEventListener('mousemove',e=>{ pmx=(e.clientX/W-0.5)*2; pmy=(e.clientY/H-0.5)*2; });
+document.querySelectorAll('.parallax-layer').forEach(el=>{
+  const depth=parseFloat(el.dataset.depth||0.5);
+  function updatePar(){
+    el.style.transform=`translate(${pmx*depth*20}px,${pmy*depth*20}px)`;
+    requestAnimationFrame(updatePar);
+  }
+  updatePar();
+});
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.15});
+reveals.forEach(r=>obs.observe(r));
+
+// ── COUNTER ANIMATION ──
+const counters=document.querySelectorAll('.stat-number[data-target]');
+const cObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const target=parseInt(el.dataset.target);
+      let current=0;
+      const inc=target/40;
+      const timer=setInterval(()=>{
+        current+=inc;
+        if(current>=target){ current=target; clearInterval(timer); }
+        el.textContent=Math.floor(current)+(target>5?'+':'');
+      },40);
+      cObs.unobserve(el);
+    }
+  });
+},{threshold:0.5});
+counters.forEach(c=>cObs.observe(c));
+
+// ── BIO RING ORBIT DOTS ──
+const bioRing=document.getElementById('bio-ring');
+if(bioRing){
+  for(let i=0;i<5;i++){
+    const dot=document.createElement('div');
+    dot.className='orbit-dot';
+    const angle=(i/5)*Math.PI*2;
+    const radius=165;
+    dot.style.cssText=`
+      left:calc(50% + ${Math.cos(angle)*radius}px);
+      top:calc(50% + ${Math.sin(angle)*radius}px);
+      width:${4+i*2}px;height:${4+i*2}px;
+      animation:slowSpin ${8+i*2}s linear infinite;
+      transform-origin:${-Math.cos(angle)*radius}px ${-Math.sin(angle)*radius}px;
+      background:${i%2===0?'#00c8ff':'#00ffcc'};
+    `;
+    bioRing.appendChild(dot);
+  }
+}
+
+// ── PROJECTS HORIZONTAL DRAG SCROLL ──
+const track = document.getElementById('projectsTrack');
+const fill = document.getElementById('progressFill');
+let isDown=false,startX,scrollLeft;
+const cardW=380+32;
+let currentCard=0;
+const totalCards=7;
+
+function updateProgress(){
+  fill.style.width=(currentCard/(totalCards-3)*100)+'%';
+}
+
+function scrollToCard(i){
+  currentCard=Math.max(0,Math.min(totalCards-1,i));
+  track.style.transform=`translateX(-${currentCard*cardW}px)`;
+  track.style.transition='transform 0.6s cubic-bezier(0.23,1,0.32,1)';
+  updateProgress();
+}
+
+document.getElementById('nextBtn').addEventListener('click',()=>scrollToCard(currentCard+1));
+document.getElementById('prevBtn').addEventListener('click',()=>scrollToCard(currentCard-1));
+
+// Drag
+track.addEventListener('mousedown',e=>{isDown=true;startX=e.pageX;scrollLeft=currentCard*cardW;track.style.transition='none';});
+document.addEventListener('mouseup',e=>{
+  if(!isDown)return; isDown=false;
+  const moved=startX-e.pageX;
+  if(Math.abs(moved)>60) scrollToCard(currentCard+(moved>0?1:-1));
+  else scrollToCard(currentCard);
+});
+document.addEventListener('mousemove',e=>{
+  if(!isDown)return;
+  const x=e.pageX;
+  const walk=startX-x;
+  track.style.transform=`translateX(-${currentCard*cardW+walk}px)`;
+});
+
+// Touch
+track.addEventListener('touchstart',e=>{isDown=true;startX=e.touches[0].pageX;track.style.transition='none';},{passive:true});
+track.addEventListener('touchend',e=>{
+  if(!isDown)return; isDown=false;
+  const moved=startX-e.changedTouches[0].pageX;
+  if(Math.abs(moved)>60) scrollToCard(currentCard+(moved>0?1:-1));
+  else scrollToCard(currentCard);
+});
+
+// Card tilt on hover
+document.querySelectorAll('.project-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const cx=r.left+r.width/2, cy=r.top+r.height/2;
+    const dx=(e.clientX-cx)/r.width*16;
+    const dy=(e.clientY-cy)/r.height*-16;
+    card.style.transform=`translateY(-12px) scale(1.02) rotateX(${dy}deg) rotateY(${dx}deg)`;
+    card.style.perspective='600px';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform=''; card.style.perspective='';
+  });
+});
+
+// ── HERO ORB GENERATION ──
+const heroOrbs=document.getElementById('hero-orbs');
+for(let i=0;i<8;i++){
+  const orb=document.createElement('div');
+  const size=40+Math.random()*120;
+  const colors=['#00c8ff','#00ffcc','#0088bb','#004466'];
+  orb.style.cssText=`
+    position:absolute;
+    width:${size}px;height:${size}px;
+    left:${Math.random()*100}%;top:${Math.random()*100}%;
+    border-radius:50%;
+    background:radial-gradient(circle,${colors[Math.floor(Math.random()*colors.length)]}22,transparent 70%);
+    filter:blur(${size*0.3}px);
+    animation:drift ${10+Math.random()*20}s ease-in-out infinite;
+    animation-delay:${-Math.random()*20}s;
+    pointer-events:none;
+    mix-blend-mode:screen;
+  `;
+  heroOrbs.appendChild(orb);
+}
+
+// ── CARD CLICK TO OPEN ──
+document.querySelectorAll('.project-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const url=card.dataset.url;
+    if(url && !card.dataset.dragging) window.open(url,'_blank','noopener');
+  });
+  card.style.cursor='pointer';
+});
+// Flag drag vs click
+track.addEventListener('mousedown',()=>{ track.querySelectorAll('.project-card').forEach(c=>c.dataset.dragging=''); });
+document.addEventListener('mouseup',e=>{
+  const moved=Math.abs(startX-e.pageX);
+  track.querySelectorAll('.project-card').forEach(c=>c.dataset.dragging=moved>10?'1':'');
+});
+
+// ── NAV SCROLL STYLE ──
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>60){
+    nav.style.background='linear-gradient(to bottom,rgba(0,4,8,0.95),rgba(0,4,8,0.8))';
+    nav.style.backdropFilter='blur(20px)';
+  } else {
+    nav.style.background='linear-gradient(to bottom,#000408ee,transparent)';
+    nav.style.backdropFilter='none';
+  }
+});
+</script>
+</body>
+</html>
