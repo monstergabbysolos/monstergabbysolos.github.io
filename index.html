@@ -100,6 +100,7 @@
     text-shadow: var(--glow-sm);
     text-decoration: none;
   }
+  .nav-hamburger { display: none; }
   .nav-links { display: flex; gap: 40px; list-style: none; }
   .nav-links a {
     font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
@@ -753,6 +754,216 @@
     font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--white-dim); margin-top: 4px;
   }
+
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE — TABLET (≤ 1024px)
+  ═══════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    nav { padding: 20px 40px; }
+
+    #about {
+      grid-template-columns: 1fr;
+      padding: 100px 60px;
+      gap: 60px;
+      text-align: center;
+    }
+    .about-visual { justify-content: center; }
+    .section-label { justify-content: center; }
+    .skills-grid { justify-content: center; }
+    .stats-row { justify-content: center; }
+
+    #creative {
+      grid-template-columns: 1fr;
+      padding: 100px 60px;
+      gap: 60px;
+    }
+
+    #contact { padding: 120px 60px; }
+    footer { padding: 28px 60px; }
+    .projects-header { padding: 0 60px; }
+    .projects-track { padding: 0 60px; }
+  }
+
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE — MOBILE (≤ 768px)
+  ═══════════════════════════════════════════════ */
+  @media (max-width: 768px) {
+    /* Hide custom cursor on touch */
+    #cursor, #cursor-ring { display: none; }
+    body { cursor: auto; }
+
+    /* ── NAV ── */
+    nav {
+      padding: 16px 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .nav-logo {
+      font-size: 13px;
+      letter-spacing: 0.2em;
+    }
+    .nav-links {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,4,8,0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      z-index: 150;
+      display: none !important;
+    }
+    .nav-links.open { display: flex !important; }
+    .nav-links a { font-size: 22px; letter-spacing: 0.3em; color: var(--white); }
+    .nav-hamburger {
+      display: flex !important;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--blue-bright);
+      box-shadow: var(--glow-sm);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── HERO ── */
+    #hero { padding: 100px 24px 60px; text-align: center; }
+    .hero-eyebrow { font-size: 9px; letter-spacing: 0.3em; margin-bottom: 16px; }
+    .hero-name {
+      font-size: clamp(40px, 12vw, 72px);
+      letter-spacing: -0.01em;
+    }
+    .hero-title { font-size: clamp(14px, 4vw, 20px); margin-top: 14px; }
+    .hero-desc { font-size: 11px; line-height: 1.9; margin-top: 16px; }
+    .hero-cta {
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 36px;
+    }
+    .btn { padding: 14px 28px; font-size: 9px; width: 200px; text-align: center; }
+    .scroll-indicator { display: none; }
+
+    /* ── ABOUT ── */
+    #about {
+      grid-template-columns: 1fr;
+      padding: 80px 24px;
+      gap: 50px;
+      text-align: center;
+    }
+    .about-visual { justify-content: center; }
+    .bio-ring { width: 240px; height: 240px; }
+    .bio-avatar { width: 130px; height: 130px; font-size: 26px; }
+    .section-label { justify-content: center; font-size: 8px; }
+    .section-title { font-size: clamp(22px, 6vw, 36px); margin-bottom: 20px; }
+    .about-bio { font-size: 11px; line-height: 2; }
+    .stats-row {
+      flex-direction: row;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-number { font-size: 28px; }
+    .stat-label { font-size: 7px; }
+    .skills-grid { justify-content: center; gap: 8px; margin-top: 24px; }
+    .skill-tag { font-size: 8px; padding: 5px 12px; }
+
+    /* ── PROJECTS ── */
+    #projects { padding: 80px 0 60px; }
+    .projects-header { padding: 0 24px; margin-bottom: 40px; }
+    .projects-intro { flex-direction: column; gap: 12px; }
+    .projects-intro p { text-align: left !important; max-width: 100% !important; }
+    .projects-track {
+      padding: 0 24px;
+      gap: 20px;
+    }
+    .project-card {
+      flex: 0 0 300px;
+      height: 460px;
+    }
+    .card-title { font-size: 12px; }
+    .card-desc { font-size: 10px; line-height: 1.7; }
+    .card-icon-area { height: 160px; top: 70px; }
+    .card-icon svg { width: 52px; height: 52px; }
+    .track-nav { margin-top: 20px; }
+
+    /* ── CREATIVE ── */
+    #creative {
+      grid-template-columns: 1fr;
+      padding: 80px 24px;
+      gap: 50px;
+    }
+    .creative-grid {
+      grid-template-columns: 1fr;
+    }
+    .creative-item:first-child { grid-column: 1; }
+    .creative-item { padding: 24px 20px; }
+    .creative-item-icon { font-size: 28px; margin-bottom: 12px; }
+    .creative-item-title { font-size: 11px; }
+    .creative-item-desc { font-size: 10px; }
+
+    /* ── CONTACT ── */
+    #contact { padding: 100px 24px; }
+    .contact-title { font-size: clamp(36px, 10vw, 64px); }
+    .contact-sub { font-size: 10px; letter-spacing: 0.15em; margin-bottom: 40px; }
+    .contact-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 60px;
+    }
+    .contact-link {
+      font-size: 9px;
+      padding: 12px 28px;
+      width: 220px;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 8px;
+      padding: 24px;
+    }
+    footer p { font-size: 8px; letter-spacing: 0.15em; }
+  }
+
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE — SMALL PHONES (≤ 420px)
+  ═══════════════════════════════════════════════ */
+  @media (max-width: 420px) {
+    .nav-links { display: none; }
+    .nav-logo { font-size: 12px; }
+
+    .hero-name { font-size: clamp(32px, 11vw, 56px); }
+    .hero-desc { font-size: 10px; }
+
+    #about { padding: 70px 20px; }
+    .bio-ring { width: 200px; height: 200px; }
+    .bio-avatar { width: 110px; height: 110px; font-size: 22px; }
+    .stats-row { gap: 20px; }
+    .stat-number { font-size: 24px; }
+
+    .project-card { flex: 0 0 272px; height: 440px; }
+    .projects-track { padding: 0 20px; }
+    .projects-header { padding: 0 20px; }
+
+    #creative { padding: 70px 20px; }
+    #contact { padding: 80px 20px; }
+    .contact-title { font-size: clamp(30px, 9vw, 52px); }
+  }
 </style>
 </head>
 <body>
@@ -765,12 +976,15 @@
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">JOE GABRIEL</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#creative">Creative</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeNav()">About</a></li>
+    <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+    <li><a href="#creative" onclick="closeNav()">Creative</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1125,10 +1339,10 @@
   <h2 class="contact-title reveal">Let's build<br>something alive.</h2>
   <p class="contact-sub reveal">Open to collaborations, contracts, and conversations.</p>
   <div class="contact-links reveal">
-    <a href="mailto:joegabriel@gmail.com" class="contact-link">✉ Email Me</a>
-    <a href="https://linkedin.com/in/joe-gabriel" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+    <a href="mailto:joegabriel061@gmail.com" class="contact-link">✉ Email Me</a>
+    <a href="https://linkedin.com/in/joe-gabriel777" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
     <a href="https://github.com/monstergabbysolos" target="_blank" rel="noopener" class="contact-link">GitHub</a>
-    <a href="https://instagram.com/joe.gabriel" target="_blank" rel="noopener" class="contact-link">Instagram</a>
+    <a href="https://instagram.com/__i_am_gabriel__" target="_blank" rel="noopener" class="contact-link">Instagram</a>
   </div>
 </section>
 
@@ -1138,6 +1352,20 @@
 </footer>
 
 <script>
+// ── HAMBURGER MENU ──
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+function closeNav() {
+  navLinks.classList.remove('open');
+  navToggle.classList.remove('open');
+}
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open');
+  });
+}
+
 // ── CURSOR ──
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
