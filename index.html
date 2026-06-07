@@ -755,9 +755,136 @@
     color: var(--white-dim); margin-top: 4px;
   }
 
-  /* ═══════════════════════════════════════════════
-     RESPONSIVE — TABLET (≤ 1024px)
-  ═══════════════════════════════════════════════ */
+
+  /* ── EXPERIENCE ── */
+  #experience {
+    padding: 120px 100px;
+  }
+  .experience-header {
+    margin-bottom: 72px;
+  }
+  .experience-track {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .exp-card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 32px;
+    position: relative;
+  }
+  .exp-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6px;
+  }
+  .exp-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1px solid #00c8ff55;
+    background: var(--deep);
+    box-shadow: 0 0 12px #00c8ff44;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s;
+  }
+  .exp-dot.active {
+    background: var(--blue-core);
+    border-color: var(--blue-bright);
+    box-shadow: var(--glow-md);
+    animation: breathe 3s ease-in-out infinite;
+  }
+  .exp-line {
+    width: 1px;
+    flex: 1;
+    min-height: 60px;
+    background: linear-gradient(to bottom, #00c8ff33, #00c8ff11);
+    margin-top: 6px;
+  }
+  .exp-body {
+    padding-bottom: 56px;
+  }
+  .exp-type {
+    font-size: 8px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--accent);
+    padding: 3px 10px;
+    border: 1px solid #00ffcc33;
+    background: #00ffcc08;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .exp-type.current {
+    color: var(--blue-bright);
+    border-color: #00c8ff44;
+    background: #00c8ff08;
+    animation: breathe 3s ease-in-out infinite;
+  }
+  .exp-type.edu {
+    color: var(--gold);
+    border-color: #ffe06644;
+    background: #ffe06608;
+  }
+  .exp-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .exp-org {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-style: italic; font-weight: 300;
+    color: var(--blue-bright);
+    text-shadow: var(--glow-sm);
+    margin-bottom: 4px;
+  }
+  .exp-period {
+    font-size: 9px; letter-spacing: 0.2em;
+    color: #00c8ff55; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .exp-desc {
+    font-size: 11px; line-height: 2;
+    color: var(--white-dim);
+    margin-bottom: 18px;
+    max-width: 600px;
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .exp-tag {
+    font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid #00c8ff22;
+    color: #00c8ff77;
+    background: #00c8ff06;
+    transition: all 0.3s;
+  }
+  .exp-tag:hover {
+    border-color: var(--blue-bright);
+    color: var(--blue-bright);
+    box-shadow: var(--glow-sm);
+  }
+
+  @media (max-width: 768px) {
+    #experience { padding: 80px 24px; }
+    .exp-card { grid-template-columns: 32px 1fr; gap: 20px; }
+    .exp-title { font-size: 12px; }
+    .exp-org { font-size: 14px; }
+    .exp-desc { font-size: 10px; }
+    .exp-body { padding-bottom: 40px; }
+  }
+  @media (max-width: 420px) {
+    #experience { padding: 70px 20px; }
+    .exp-card { grid-template-columns: 28px 1fr; gap: 16px; }
+  }
+
+
   @media (max-width: 1024px) {
     nav { padding: 20px 40px; }
 
@@ -978,6 +1105,7 @@
   <a href="#hero" class="nav-logo">JOE GABRIEL</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about" onclick="closeNav()">About</a></li>
+    <li><a href="#experience" onclick="closeNav()">Experience</a></li>
     <li><a href="#projects" onclick="closeNav()">Projects</a></li>
     <li><a href="#creative" onclick="closeNav()">Creative</a></li>
     <li><a href="#contact" onclick="closeNav()">Contact</a></li>
@@ -1014,10 +1142,8 @@
   <div class="about-visual reveal">
     <div class="bio-ring" id="bio-ring">
       <div class="bio-avatar">
-  <img src="https://raw.githubusercontent.com/monstergabbysolos/monstergabbysolos.github.io/main/images/me.jpg" 
-       alt="Joe Gabriel" 
-       style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-</div>
+    <img src="https://raw.githubusercontent.com/monstergabbysolos/monstergabbysolos.github.io/main/images/me.jpg" alt="Joe Gabriel" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">
+  </div>
     </div>
   </div>
   <div class="about-text">
@@ -1026,7 +1152,7 @@
       Where <span class="highlight">circuits</span> meet<br>consciousness.
     </h2>
     <p class="about-bio">
-      I'm Joe Gabriel — a Chennai-based engineer and creative who builds at the intersection of hardware, software, and story. I design <em>instruments for nuclear inspection</em>, craft Flutter ecosystems, and write fiction that bends genres.
+      I'm Joe — a Chennai-based engineer and creative who builds at the intersection of hardware, software, and story. I design <em>instruments for nuclear inspection</em>, craft Flutter ecosystems, and write fiction that bends genres.
     </p>
     <p class="about-bio">
       My work lives at the edge of what's technically possible and what's humanly meaningful. Whether it's a bioluminescent oscillator coil or a political short film — I engineer with soul.
@@ -1057,6 +1183,103 @@
       <span class="skill-tag">Film</span>
       <span class="skill-tag">Political Art</span>
     </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="experience-header reveal">
+    <p class="section-label">Career Path</p>
+    <h2 class="section-title">Where I've <span class="highlight">worked</span>.</h2>
+  </div>
+
+  <div class="experience-track">
+
+    <!-- Education -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <div class="exp-dot"></div>
+        <div class="exp-line"></div>
+      </div>
+      <div class="exp-body">
+        <span class="exp-type edu">Education</span>
+        <h3 class="exp-title">B.Tech — Mechatronics & Automation</h3>
+        <p class="exp-org">VIT Chennai</p>
+        <p class="exp-period">Undergraduate</p>
+        <p class="exp-desc">Multidisciplinary engineering degree bridging mechanical systems, electronics, control theory, robotics and software — the foundation for everything I build.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Mechatronics</span>
+          <span class="exp-tag">Automation</span>
+          <span class="exp-tag">Control Systems</span>
+          <span class="exp-tag">Robotics</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IGCAR -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <div class="exp-dot active"></div>
+        <div class="exp-line"></div>
+      </div>
+      <div class="exp-body">
+        <span class="exp-type current">Current · Intern & Part-Timer</span>
+        <h3 class="exp-title">Nuclear Research Internship</h3>
+        <p class="exp-org">Indira Gandhi Centre for Atomic Research</p>
+        <p class="exp-period">Jan 2024 – Jan 2026</p>
+        <p class="exp-desc">Working on simulation and evaluation of nuclear reactor control systems with a focus on safety logic, redundancy, and automation principles. Gaining exposure to critical systems engineering and control protocols used in nuclear-grade environments.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Safety Logic</span>
+          <span class="exp-tag">Control Systems</span>
+          <span class="exp-tag">Redundancy</span>
+          <span class="exp-tag">Critical Systems</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vinayaga -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <div class="exp-dot"></div>
+        <div class="exp-line"></div>
+      </div>
+      <div class="exp-body">
+        <span class="exp-type">Intern</span>
+        <h3 class="exp-title">3D Design & Manufacturing Internship</h3>
+        <p class="exp-org">Vinayaga 3D Prototyping</p>
+        <p class="exp-period">Nov 2023 – Dec 2023</p>
+        <p class="exp-desc">Participated in the end-to-end workflow of CAD modeling, 3D scanning, and printing of mechanical parts for real-world applications. Created custom jigs, fixtures, and project enclosures with a focus on dimensional precision and usability.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">CAD Modeling</span>
+          <span class="exp-tag">3D Scanning</span>
+          <span class="exp-tag">3D Printing</span>
+          <span class="exp-tag">Fabrication</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sedaxis -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <div class="exp-dot"></div>
+      </div>
+      <div class="exp-body">
+        <span class="exp-type">Intern</span>
+        <h3 class="exp-title">3D Printing & Robotics Internship</h3>
+        <p class="exp-org">Sedaxis Advanced Materials</p>
+        <p class="exp-period">Aug 2023 – Oct 2023</p>
+        <p class="exp-desc">Hands-on experience with FDM, SLS, DLP, SLA, and CNC-based fabrication techniques for prototyping and functional component production. Learned Fusion 360 for advanced 3D design and optimization of structures for additive manufacturing.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">FDM / SLS / SLA</span>
+          <span class="exp-tag">Fusion 360</span>
+          <span class="exp-tag">CNC</span>
+          <span class="exp-tag">Robotics</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1343,10 +1566,10 @@
   <h2 class="contact-title reveal">Let's build<br>something alive.</h2>
   <p class="contact-sub reveal">Open to collaborations, contracts, and conversations.</p>
   <div class="contact-links reveal">
-    <a href="mailto:joegabriel061@gmail.com" class="contact-link">✉ Email Me</a>
-    <a href="https://linkedin.com/in/joe-gabriel777" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+    <a href="mailto:joegabriel@gmail.com" class="contact-link">✉ Email Me</a>
+    <a href="https://linkedin.com/in/joe-gabriel" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
     <a href="https://github.com/monstergabbysolos" target="_blank" rel="noopener" class="contact-link">GitHub</a>
-    <a href="https://instagram.com/__i_am_gabriel__" target="_blank" rel="noopener" class="contact-link">Instagram</a>
+    <a href="https://instagram.com/joe.gabriel" target="_blank" rel="noopener" class="contact-link">Instagram</a>
   </div>
 </section>
 
